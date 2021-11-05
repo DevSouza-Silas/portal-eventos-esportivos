@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Eventos Esportivos</title>
+
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
+ <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+
+<style type="text/css">
+	table.striped>tbody>tr:nth-child(odd) {
+		background-color: rgba(158, 154, 154, 0.5);
+	}
+
+	form input[type=submit] {
+ 		color: white;
+	}
+</style>
+
+</head>
+<body>
+
+   <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Eventos Esportivos</a>
+    </div>
+   </nav>
+  
+   <div class="row">
+    <div class="col s10">
+      <div class="card">
+      
+		<h3>Eventos Esportivos</h3><br/>
+		<h5>Informações do Evento</h5>
+	
+		 <div th:each="p : ${eventoobj}">
+		     <div class="row">
+		        <p class="col s2"><b>ID:</b> <span th:text="${e.id}"></span></p>
+		        <p class="col s2"><b>Nome:</b> <span th:text="${e.nome}"></span></p>
+		        <p class="col s2"><b>Endereço:</b> <span th:text="${e.endereco}"></span></p>
+		        <p class="col s2"><b>Data:</b> <span th:text="${e.data}"></span></p>
+		        <p class="col s2"><b>Hora:</b> <span th:text="${e.hora}"></span></p>
+		     </div>
+		 </div>
+		 <a class="col s2 btn" href="/cadastropessoa">Vincular</a>
+      </div>	 
+     </div>	 
+    </div>	 
+		 
+		 
+	<br/>
+	    <div th:each = "m : ${msg}">
+	        <span th:text = "${m}"> </span>
+	    </div>
+	<br/>
+
+	<h5>Convidados:</h5>
+		 
+	 <div class="row">
+	   <form th:action="@{/addConvidadoEvento/{eventoid}(eventoid=${eventoobj.id})}"
+		    method="post" class="col s12" onsubmit="return validarCampos()? true : false">
+		    <div class="row">
+		    	<div class="input-field col s6">
+		    	  <label class="active" for="nome">Nome:</label>
+		    	  <input id="nome" name="nome" class="validate">
+		    	</div>
+		    	
+		    	<div class="input-field col s6">
+		    	  <label class="active" for="documento">Documento:</label>
+		    	  <input id="documento" name="documento" class="validate">
+		    	</div>
+		    	
+		    	<input type="submit" value="Convidar"  class="waves-effect waves-light btn">
+		    </div>
+		   </form>
+		 </div>
+		 
+		 <table class="striped">
+		   <tr th:each="convidado : ${convidados}">
+		     <td th:text="${fone.numero}"/>
+		     <td th:text="${fone.tipo}"/>
+		     <td><a th:href="@{/removerconvidado/{idconvidado}(idconvidado=${convidado.id})}">Excluir</a> </td>
+		   </tr>
+		 </table>
+		 
+		 <script type="text/javascript" src="/materialize/js/materialize.js"></script>
+		 <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+		 
+		 <script type="text/javascript">
+		  function validarCampos(){
+			  nome = document.getElementById('nome').value;
+			  documento = document.getElementById('documento').value;
+			  
+			  if (nome === ''){
+				  alert('Nome deve ser informado');
+				  return false;
+			  }
+			  else if (documento === '') {
+				  alert('Documento deve ser informado');
+				  return false;
+			  }
+			  
+			  return true;
+		  }
+		 </script>
+</body>
+</html>
