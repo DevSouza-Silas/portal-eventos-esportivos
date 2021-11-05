@@ -1,5 +1,5 @@
-# Portal para formação e divulgação de Eventos Esportivos
-Projeto Teste.
+# Pojeto Teste.
+Portal para formação e divulgação de Eventos Esportivos.
 Tecnologias utilizadas:
 Postgresql e Mysql;
 Thymeleaf;
