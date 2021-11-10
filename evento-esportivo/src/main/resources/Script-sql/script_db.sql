@@ -33,5 +33,8 @@ CREATE TABLE convidado (
 CREATE TABLE IF NOT EXISTS `eventosesportivos`.`hibernate_sequence` (
   `next_val` BIGINT NULL DEFAULT NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 5182e83ebef2c15a0f997beb3d4c4fab3dfb955a

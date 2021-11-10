@@ -17,10 +17,9 @@ public class EventoesportivoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EventoesportivoApplication.class, args);
-		/*
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String result = encoder.encode("123");
-		System.out.println(result);
-		*/
+		/*BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		  String result = encoder.encode("123");
+		  System.out.println(result);
+		 */
 	}
 }
