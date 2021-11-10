@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width" />
+	<title>Lista de Usuários</title>
+</head>
+
+<body>
+	<h1>Portal para formação e divulgação de Eventos Esportivos!</h1>
+
+	<form class="form-inline" method="POST" th:object="${usuario}" th:action="@{/usuarios}" style="margin: 20px 0">
+
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Nome Completo" th:field="*{nomeCompleto}"/>
+			<input type="text" class="form-control" placeholder="Apelido" th:field="*{apelido}"/>
+			<input type="text" class="form-control" placeholder="Email" th:field="*{email}"/>
+			<input type="text" class="form-control" placeholder="Senha" th:field="*{senha}"/>
+			
+			<button type="submit" class="btn btn-primary">Cadastrar</button>
+		</div>
+		
+	</form>
+	
+	<div class="panel panel-default" style="margin: 10px">
+			<div class="panel-heading">
+				<h1 class="panel-title">Lista de usuários</h1>
+			</div>
+			<div class="panel-body">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nome Completo</th>
+							<th>Apelido</th>
+							<th>Email</th>
+							<th>Senha</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="usuario : ${usuarios}">
+							<td th:text="${usuario.id}"/>
+							<td th:text="${usuario.nomeCompleto}"/>
+							<td th:text="${usuario.apelido}"/>
+							<td th:text="${usuario.email}"/>
+							<td th:text="${usuario.senha}"/>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+</body>
+</html>

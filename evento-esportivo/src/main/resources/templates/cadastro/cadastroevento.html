@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Eventos Esportivos</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
+ <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+ <link rel="stylesheet" href="style/styleCss.css"/>
+
+</head>
+<body>
+
+	<header>
+	<nav class="menu">
+	    <div class="nav-wrapper">
+	      <a href="#" class="brand-logo">Eventos Esportivos</a>
+	      <ul id="nav-mobile" class="right hide-on-med-and-down">
+	        <li><a href="/logout" class="waves-effect waves-light btn">Logout</a></li>
+	      </ul>
+	    </div>
+	</nav>
+	</header>
+	<br/>
+
+	<div class="container formEvento">
+	<h5>Cadastro de Evento</h5>
+	
+	<form action="salvarevento" id="formevento" method="post" th:object="${eventoobj}" class="container">
+	
+				<div class="row">
+					<div class="input-fiel col s6">
+						ID: <input name="id" th:field="*{id}" id="id"
+							readonly="readonly">
+					</div>
+					<div class="input-fiel col s6">
+						Nome: <input type="text" name="nome" class="validate"
+							th:field="*{nome}" id="nome">
+					</div>
+				</div>
+	
+				<div class="row">
+					<div class="input-field col s12">
+						Endereço: <input type="text" name="endereco" class="validate"
+							th:field="*{endereco}" id="endereco">
+					</div>
+					
+					<div class="input-field col s5">
+						Data: <input type="date" name="data" class="validate"
+							th:field="*{data}" id="data">
+					</div>
+					
+					<div class="input-field col s3">
+						Hora: <input type="time" name="hora" class="validate"
+							th:field="*{hora}" id="hora">
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="input-field col s6">
+						<input class="waves-effect waves-light btn" type="submit"
+							value="Salvar">
+							
+						<button class="waves-effect waves-light btn" onclick="document.getElementById('formevento').reset();">Novo</button>	
+							
+					</div>
+				</div>
+			</form>
+	 </div>
+
+	 <div class="container formEvento">
+	 	<h5>Eventos Cadastrados</h5>
+	 	
+			<form action="pesquisarevento" method="post">
+				<div class="row">
+					<div class="input-field col s6">
+						<label for="nomepesquisa" class="active">Pesquiar por nome:</label>
+						<input name="nomepesquisa" id="nomepesquisa" class="validate">
+						<input class="waves-effect waves-light btn" type="submit" value="Pesquisar">
+						<a class="waves-effect waves-light btn" href="/listaeventos">Listar Eventos</a>	
+					</div>
+				</div>
+			</form>
+	
+		<br><br/>
+		<table class="striped">
+		  <thead>
+		    <tr>
+			   <th>ID</th>
+			   <th>Nome</th>
+			   <th>Endereço</th>
+			   <th>Data</th>
+			   <th>Hora</th>
+			   <th>Editar</th>
+			   <th>Excluir</th>
+		    </tr>
+		 </thead>
+		  <tr th:each = "evento : ${eventos}">
+		    <td th:text = "${evento.id}"></td>
+		    <td><a th:href="@{/evento/{idevento}(idevento=${evento.id})}"><span th:text = "${evento.nome}"></span></a></td>
+		    <td th:text = "${evento.endereco}"></td>
+		    <td th:text = "${evento.data}"></td>
+		    <td th:text = "${evento.hora}"></td>
+		    <td><a th:href="@{/editarevento/{idevento}(idevento=${evento.id})}">Editar</a> </td>
+		    <td><a th:href="@{/removerevento/{idevento}(idevento=${evento.id})}">Excluir</a> </td>
+		  </tr>
+		 </table>
+	</div>
+	 
+	 <script type="text/javascript" src="/materialize/js/materialize.js"></script>
+	 <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+</body>
+</html>

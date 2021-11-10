@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.eventoesportivo</groupId>
-	<artifactId>evento-esportivo</artifactId>
+	<artifactId>eventoesportivo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	
 
-	<name>eventoesportivo</name>
+	<name></name>
 	<description>Portal para formação e divulgação de Eventos Esportivos</description>
 
 	<parent>

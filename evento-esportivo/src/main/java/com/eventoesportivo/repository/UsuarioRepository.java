@@ -11,7 +11,7 @@ import com.eventoesportivo.model.Usuario;
 @Transactional
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 	
-	@Query("select u from Usuario u where u.login = ?1")
-	Usuario findUserByLogin(String login);
+	@Query("select u from Usuario u where u.email = ?1")
+	Usuario findUserByEmail(String email);
 
 }

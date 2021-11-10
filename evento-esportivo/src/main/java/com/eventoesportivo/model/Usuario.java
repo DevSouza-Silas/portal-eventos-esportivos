@@ -2,6 +2,7 @@ package com.eventoesportivo.model;
 
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,11 @@ public class Usuario implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String login;
+	@Column(name = "nome_completo")
+	private String nomeCompleto;
+
+	private String apelido;
+	private String email;
 	private String senha;
 
 	public Long getId() {
@@ -30,12 +35,28 @@ public class Usuario implements UserDetails {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getNomeCompleto() {
+		return nomeCompleto;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
+	}
+
+	public String getApelido() {
+		return apelido;
+	}
+
+	public void setApelido(String apelido) {
+		this.apelido = apelido;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {
@@ -58,7 +79,7 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return login;
+		return email;
 	}
 
 	@Override

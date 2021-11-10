@@ -9,16 +9,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@EntityScan(basePackages = "com.eventosesportivos.model")
+@EntityScan(basePackages = "com.eventoesportivo.model")
 @ComponentScan(basePackages = { "com.*" })
-@EnableJpaRepositories(basePackages = { "com.eventosesportivos.repository" })
+@EnableJpaRepositories(basePackages = { "com.eventoesportivo.repository" })
 @EnableTransactionManagement
-public class SpringbootApplication {
+public class EventoesportivoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootApplication.class, args);
-
-		/*BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		SpringApplication.run(EventoesportivoApplication.class, args);
+		/*
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String result = encoder.encode("123");
 		System.out.println(result);
 		*/

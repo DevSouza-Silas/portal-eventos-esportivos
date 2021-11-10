@@ -42,23 +42,9 @@ public class EventoController{
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "**/salvarevento")
-	public ModelAndView salvar(@Valid Evento evento, BindingResult bindingResult) {
+	public ModelAndView salvar(Evento evento) {
 		
-		
-		if (bindingResult.hasErrors()) {
-			ModelAndView modelAndView = new ModelAndView("cadastro/cadastroevento");
-			Iterable<Evento> eventosIt = eventoRepository.findAll();
-			modelAndView.addObject("eventos", eventosIt);
-			modelAndView.addObject("eventoobj", evento);
-			
-			List<String> msg = new ArrayList<String>();
-			for (ObjectError objectError : bindingResult.getAllErrors()) {
-				msg.add(objectError.getDefaultMessage()); // vem das anotações @NotEmpty e outras
-			}
-			
-			modelAndView.addObject("msg", msg);
-			return modelAndView;
-		}
+	
 		
 		eventoRepository.save(evento);
 
@@ -105,7 +91,7 @@ public class EventoController{
 		
 	}
 	
-	@PostMapping("**/pesquisarEvento")
+	@PostMapping("**/pesquisarevento")
 	public ModelAndView pesquisar(@RequestParam("nomepesquisa") String nomepesquisa) {
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastroevento");
 		modelAndView.addObject("eventos", eventoRepository.findEventoByName(nomepesquisa));
@@ -114,21 +100,21 @@ public class EventoController{
 	}
 	
 	
-	@GetMapping("/convidados/{idevento}")
+	@GetMapping("/evento/{idevento}")
 	public ModelAndView eventos(@PathVariable("idevento") Long idevento) {
 		
 		Optional<Evento> evento = eventoRepository.findById(idevento);
 
-		ModelAndView modelAndView = new ModelAndView("cadastro/convidados");
+		ModelAndView modelAndView = new ModelAndView("cadastro/eventos");
 		modelAndView.addObject("eventoobj", evento.get());
-		modelAndView.addObject("msg", new ArrayList<String>());
+		//modelAndView.addObject("msg", new ArrayList<String>());
 		modelAndView.addObject("convidados", convidadoRepository.getConvidados(idevento));
 		return modelAndView;
 		
 	}
 	
-	@PostMapping("**/addconvidadoEvento/{eventoid}")
-	public ModelAndView addConvEvento(Convidado convidado , 
+	@PostMapping("**/addConvidadoEvento/{eventoid}")
+	public ModelAndView addConvidadoEvento(Convidado convidado , 
 									 @PathVariable("eventoid") Long eventoid) {
 		
 		Evento evento = eventoRepository.findById(eventoid).get();
@@ -136,7 +122,7 @@ public class EventoController{
 		if(convidado != null && convidado.getNome().isEmpty() 
 				|| convidado.getDocumento().isEmpty()) {
 			
-			ModelAndView modelAndView = new ModelAndView("cadastro/convidados");
+			ModelAndView modelAndView = new ModelAndView("cadastro/eventos");
 			modelAndView.addObject("eventoobj", evento);
 			modelAndView.addObject("convidados", convidadoRepository.getConvidados(eventoid));
 			
@@ -154,7 +140,7 @@ public class EventoController{
 			
 		}
 		
-		ModelAndView modelAndView = new ModelAndView("cadastro/convidados");
+		ModelAndView modelAndView = new ModelAndView("cadastro/eventos");
 
 		convidado.setEvento(evento);
 		

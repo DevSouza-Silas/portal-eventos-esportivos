@@ -37,7 +37,7 @@ public class Evento implements Serializable {
 	@NotEmpty(message = "A hora não pode ser vazio")
 	private String hora;
 	
-	@OneToMany(mappedBy="evento", orphanRemoval= true, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="evento", cascade = CascadeType.ALL)
 	private List<Convidado> convidados;
 	
 
